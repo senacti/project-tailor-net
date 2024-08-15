@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-1.13.8/af-2.6.0/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/cr-1.7.0/date-1.5.1/fc-4.3.0/fh-3.4.0/kt-2.11.0/r-2.5.0/rg-1.4.1/rr-1.4.1/sc-2.3.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/sr-1.3.0/datatables.min.css" rel="stylesheet">
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-1.13.8/af-2.6.0/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/cr-1.7.0/date-1.5.1/fc-4.3.0/fh-3.4.0/kt-2.11.0/r-2.5.0/rg-1.4.1/rr-1.4.1/sc-2.3.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/sr-1.3.0/datatables.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="navigation active">
+        <ul>
+            <li>
+                <a href="#">
+                        <span class="icon">
+                            <i class="bi bi-scissors"></i>
+                        </span>
+                    <span class="title">Tailor.net</span>
+                </a>
+            </li>
+            <li>
+                <a href="/dashboard">
+                        <span class="icon">
+                            <i class="bi bi-house-door"></i>
+                        </span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/d_usuarios">
+                        <span class="icon">
+                            <i class="bi bi-people-fill"></i>
+                        </span>
+                    <span class="title">Clientes</span>
+                </a>
+            </li>
+            <li>
+                <a href="/agendamientoCitas">
+                        <span class="icon">
+                            <i class="bi bi-info-circle"></i>
+                        </span>
+                    <span class="title">Citas</span>
+                </a>
+            </li>
+            <li>
+                <a href="/ventas">
+                    <span class="icon">
+                       <i class="bi bi-coin"></i>
+                    </span>
+                    <span class="title">Ventas</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                        <span class="icon">
+                            <i class="bi bi-gear"></i>
+                        </span>
+                    <span class="title">Configuraciones</span>
+                </a>
+            </li>
+            <li class="hovered">
+                <a href="/inventario">
+                        <span class="icon">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                        </span>
+                    <span class="title">Inventario</span>
+                </a>
+            </li>
+            <li>
+                <a href="/inventario_aseo">
+                        <span class="icon">
+                            <i class="fa-solid fa-soap"></i>
+                        </span>
+                    <span class="title">Inventario Aseo</span>
+                </a>
+            </li>
+            <li>
+                <a href="/login">
+                        <span class="icon">
+                            <i class="bi bi-box-arrow-right"></i>
+                        </span>
+                    <span class="title">Desconectar</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="main active">
+        <div class="topbar">
+            <div class="toggle">
+                <i class="bi bi-list"></i>
+            </div>
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Buscar">
+                    <i class="bi bi-search"></i>
+                </label>
+            </div>
+            <div class="user">
+                <img src="/img/Clientes/alcarngel.jpeg" alt="">
+            </div>
+        </div>
+        <div class="content">
+            <center><h1>Inventario</h1></center>
+            <div class="table-container">
+                <div class="segundo">
+                    <div class="header_fixed" >
+            <table class="table" id="table_productos2">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio Unidad</th>
+                    <th>Cantidad</th>
+                    <th>Cantidad Mínima</th>
+                    <th>Talla</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="producto : ${productos}">
+                    <td th:text="${producto.idProducto}">1</td>
+                    <td th:text="${producto.nombre}">Nombre</td>
+                    <td th:text="${producto.descripcion}">Descripción</td>
+                    <td th:text="${producto.precioUnidad}">0.0</td>
+                    <td th:text="${producto.cantidad}">0</td>
+                    <td th:text="${producto.cantidadMin}">0</td>
+                    <td th:text="${producto.talla}">Talla</td>
+                    <td>
+                        <img th:if="${producto.imagen != null}" th:src="'data:image/jpeg;base64,' + ${producto.imagenBase64}" alt="Imagen del Producto" width="100" height="100">
+                        <span th:if="${producto.imagen == null}">Sin imagen</span>
+                    </td>
+                    <td>
+                        <a th:href="@{/producto_editar/{id}(id=${producto.idProducto})}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{/producto_eliminar/{id}(id=${producto.idProducto})}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+            </div>
+        <a th:href="@{/producto_agregar}" class="btn btn-success">Agregar Producto</a>
+</div>
+</div>
+</div>
+</div>
+<script src="https://kit.fontawesome.com/95789fc486.js" crossorigin="anonymous"></script>
+<script src="/js/dashboard.js"></script>
+<script>
+    $('#table_productos2').DataTable( {
+        pading: true,
+                lengthChange: false,
+                searching: false,
+                ordering: true,
+                info: true,
+                autoWidth: false,
+                responsive: true,
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+    </script>
+</body>
+</html>

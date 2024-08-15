@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tailor.net</title>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+        <link rel="shortcut icon" href="MVC/Vista/Pagina principal/img/icon.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/index.css">
+    </head>
+
+    <body>
+
+        <nav id="navbar">
+            <a href="#" class="brand">
+                <span><img id="cambio" src="/img/logoTailor.png" width="140px" height="50px" class="logo" alt="Logo Tailor"></span>
+                <span><img src="/img/logoTailor.png" width="140px" height="50px" class="logo" alt="Logo Tailor"></span>
+            </a>
+            <ul>
+                <li style="--i:0;">
+                    <a  href="/index">
+                        <span>Inicio</span>
+                        <span><i class="fas fa-home"></i></span>
+                    </a>
+                </li>
+                <li style="--i:1;">
+                    <a href="/tienda">
+                        <span>Tienda</span>
+                        <span><i class="fas fa-store"></i></span>
+                    </a>
+                </li>
+                <li style="--i:2;">
+                    <a href="/agendamiento">
+                        <span>Agenda tu cita</span>
+                        <span><i class="fas fa-photo-video"></i></span>
+                    </a>
+                </li>
+                <li style="--i:3;">
+                    <a href="/about">
+                        <span>Nosotros</span>
+                        <span><i class="fas fa-user-friends"></i></span>
+                    </a>
+                </li>
+                <li style="--i:4;">
+                    <a class="active" href="/contact">
+                        <span>Contactanos</span>
+                        <span><i class="fas fa-envelope"></i></span>
+                    </a>
+                </li>
+                <li style="--i:4;">
+                    <a href="/kart">
+                        <span><i class="far fa-cart-plus"></i></span>
+                        <span><i class="fas fa-shopping-cart"></i></span>
+                    </a>
+                </li>
+        
+                <ul>
+                    <li th:if="${usuarioLogueado}" style="--i:4;">
+                        <a th:href="@{/logout}">
+                            <span th:text="${usuario.nombre}"></span>
+                            <span><i class="fas fa-user-alt"></i></span>
+                        </a>
+                    </li>
+                    <li th:unless="${usuarioLogueado}" style="--i:4;">
+                        <a th:href="@{/login}">
+                            <span><i class="far fa-user"></i></span>
+                            <span><i class="fas fa-user-alt"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </ul>
+        </nav>
+
+        <section id="page-header" class="contact-header">
+            <h2>#ContactanosAhora</h2>
+            <p>Dejanos un mensaje, nos encantaria saber sobre ti.</p>
+        </section>
+
+        <section id="contact-details" class="section-p1">
+            <div class="details">
+                <span> PONTE EN CONTACTO</span> 
+                <H2>Visita nuestra sastreria o contactanos hoy</H2>
+                <h3>Oficina Central</h3>
+                <div>
+                    <li>
+                        <i class="fal fa-map"></i>
+                        <p>Calle 66a #77-36 primer piso</p>
+                    </li>
+                    <li>
+                        <i class="fal fa-envelope"></i>
+                        <p>Contacto@ejemplo.com</p>
+                    </li>
+                    <li>
+                        <i class="fal fa-phone-alt"></i>
+                        <p>(+57) 310 4927032</p>
+                    </li>
+                    <li>
+                        <i class="fal fa-clock"></i>
+                        <p>Lunes a Domingos: 10.00am a 8:00pm</p>
+                    </li>
+                </div>
+            </div>
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.488481086248!2d-74.10391086500309!3d4.684837312072522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9b6a53427681%3A0x9e6c1e79118ab854!2sCl.%2066a%20%2377-36%2C%20Bogot%C3%A1!5e0!3m2!1ses!2sco!4v1694400723354!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+        <section id="form-details">
+            <form action="">
+                <span> PONTE EN CONTACTO</span> 
+                <H2>Visita nuestra sastreria o contactanos hoy</H2>
+                <input type="text" placeholder="Tu Nombre">
+                <input type="email" placeholder="Correo electrónico">
+                <input type="text" placeholder="Detalles">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Tu Mensaje"></textarea>
+                <button class="normal">Enviar</button>
+            </form>
+
+            <div class="people">
+                <div>
+                    <img src="img/people/1.png" alt="">
+                    <p><span>Will Smith</span> Sastre Principal <br> Telefono: (+57) 310 4927032 <br> Correo: contacto@ejemplo.com</p>
+                </div>
+                <div>
+                    <img src="img/people/2.png" alt="">
+                    <p><span>Arcangel</span> Sastre Principal <br> Telefono: (+57) 310 4927032 <br> Correo: contacto@ejemplo.com</p>
+                </div>
+                <div>
+                    <img src="img/people/3.png" alt="">
+                    <p><span>Jennifer Lopez</span> Sastre Principal <br> Telefono: (+57) 310 4927032 <br> Correo: contacto@ejemplo.com</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="newsletter" class="section-p1  section-m1">
+            <div class="newstext">
+                <h4>Mantente al tanto con las novedades</h4>
+                <p>Recibe actualizaciones por correo electrónico sobre nuestra tienda más reciente y <span>ofertas especiales</span></p>
+            </div>
+            <div class="form">
+                <input type="text" placeholder="Correo electrónico">
+                <button class="normal">Suscribete</button>
+            </div>
+        </section>
+
+        <footer class="section-p1">
+            <div class="col">
+                <img src="img/logoTailor.png" class="logo" alt="">
+                <h4>Contacto</h4>
+                <p><strong>Dirección:</strong> Calle 66a #77-36 primer piso</p>
+                <p><strong>Celular:</strong>(+57) 310 4927032</p>
+                <p><strong>Horario:</strong> 10:00 - 20:00, Lun - Dom</p>
+                <div class="follow">
+                    <h4>Siguenos</h4>
+                    <div>
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-twitch"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <h4>Sobre nosotros</h4>
+                <a href="#">Acerca de nosotros</a>
+                <a href="#">Politicas de privacidad</a>
+                <a href="#">Terminos y Condiciones</a>
+                <a href="#">Contactanos</a>
+                <a href="#">Como Comprar</a>
+            </div>
+            <div class="col">
+                <h4>Mi Cuenta</h4>
+                <a href="../Login y Registro/login.php">Iniciar Sesión</a>
+                <a href="#">Ver carrito</a>
+                <a href="#">Lista de deseos</a>
+                <a href="../Agendamiento de citas/agendamiento.php">Agendar cita</a>
+                <a href="../Garantias/garantias.php">Solicitar Garantia</a>
+            </div>
+<!-- cambiarlo -->
+            <div class="col pay">
+                <h4>Metodos de Pago Seguros</h4>
+                <div class="row">
+                    <img src="img/pay/Nequi-o-Daviplata.png" alt="">
+                </div>
+                <img src="img/pay/pay.png" alt="">
+            </div>
+            <div class="copyright">
+                <p>© 2023 Tailor.net. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+        <script src="/js/script.js"></script>
+    </body>
+
+</html>

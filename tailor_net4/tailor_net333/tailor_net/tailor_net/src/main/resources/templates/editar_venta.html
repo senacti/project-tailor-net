@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrador - Editar Venta</title>
+    <link rel="stylesheet" href="/css/inventario.css">
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+    
+        .editar-venta {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .editar-venta label {
+            font-weight: bold;
+        }
+        .editar-venta input {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .editar-venta button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#fecha_venta").datepicker({ dateFormat: 'yy-mm-dd' });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="col-md-2 navigation active">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon">
+                        <i class="bi bi-scissors"></i>
+                    </span>
+                    <span class="title">Tailor.net</span>
+                </a>
+            </li>
+            <li>
+                <a href="/dashboard">
+                    <span class="icon">
+                        <i class="bi bi-house-door"></i>
+                    </span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/d_usuarios">
+                    <span class="icon">
+                        <i class="bi bi-people-fill"></i>
+                    </span>
+                    <span class="title">Clientes</span>
+                </a>
+            </li>
+            <li>
+                <a href="/agendamientoCitas">
+                    <span class="icon">
+                        <i class="bi bi-info-circle"></i>
+                    </span>
+                    <span class="title">Citas</span>
+                </a>
+            </li>
+
+            <li class="hovered">
+                <a href="/ventas">
+                    <span class="icon">
+                       <i class="bi bi-coin"></i>
+                    </span>
+                    <span class="title">Ventas</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon">
+                        <i class="bi bi-gear"></i>
+                    </span>
+                    <span class="title">Configuraciones</span>
+                </a>
+            </li>
+            <li >
+                <a href="/inventario">
+                    <span class="icon">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </span>
+                    <span class="title">Inventario</span>
+                </a>
+            </li>
+            <li>
+                <a href="/inventario_aseo">
+                    <span class="icon">
+                        <i class="fa-solid fa-soap"></i>
+                    </span>
+                    <span class="title">Inventario Aseo</span>
+                </a>
+            </li>
+            <li>
+                <a href="/login">
+                    <span class="icon">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </span>
+                    <span class="title">Desconectar</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="main active">
+        <div class="topbar">
+            <div class="toggle">
+                <i class="bi bi-list"></i>
+            </div>
+
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Buscar">
+                    <i class="bi bi-search"></i>
+                </label>
+            </div>
+
+            <div class="user">
+                <img src="/img/Clientes/alcarngel.jpeg" alt="">
+            </div>
+        </div>
+        <section class="editar-venta">
+            <form id="venta-form" th:object="${venta}" action="/update" method="POST">
+                <input type="hidden" name="idVenta" th:value="*{idVenta}" />
+                <input type="hidden" name="idUsuario" th:value="*{idUsuario}" />
+
+                <label for="total_venta">Total Venta</label>
+                <input type="text" name="total_venta" id="total_venta" th:field="*{totalVenta}" th:placeholder="*{totalVenta}" required>
+
+                <label for="fecha_venta">Fecha Venta</label>
+                <input type="text" name="fecha_venta" id="fecha_venta" th:field="*{fechaVenta}" th:value="*{fechaVenta}" required>
+
+                <button type="submit" name="submit">Actualizar Venta</button>
+            </form>
+        </section>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/95789fc486.js" crossorigin="anonymous"></script>
+<script src="/js/dashboard.js"></script>
+</body>
+</html>
+

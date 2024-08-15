@@ -1,0 +1,82 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.agendamiento-citas {
+    margin: 20px auto;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.agendamiento-citas::before {
+    content: "";
+    background-image: url('/img/fondo.jpg');
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.6;
+    border-radius: 10px;
+}
+
+/* Encabezado del formulario */
+.agendamiento-citas h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.agendamiento-citas p {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Estilos del formulario */
+.agendamiento-citas form {
+    display: flex;
+    flex-direction: column;
+}
+
+.agendamiento-citas label {
+    font-weight: bold;
+    margin-top: 12px;
+    color: #333;
+}
+
+.agendamiento-citas input,
+.agendamiento-citas select {
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.agendamiento-citas button {
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.agendamiento-citas button:hover {
+    background-color: #0056b3;
+}

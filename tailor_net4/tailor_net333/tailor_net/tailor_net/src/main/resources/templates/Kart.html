@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailor.net</title>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+  <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="/" class="brand">
+    <span><img id="cambio" src="/img/logoTailor.png" width="140px" height="50px" class="logo" alt="Logo Tailor"></span>
+    <span><img src="/img/logoTailor.png" width="140px" height="50px" class="logo" alt="Logo Tailor"></span>
+  </a>
+  <ul>
+    <li style="--i:0;">
+      <a class="active" href="/index" th:href="@{/index}">
+        <span>Inicio</span>
+        <span><i class="fas fa-home"></i></span>
+      </a>
+    </li>
+    <li style="--i:1;">
+      <a href="/tienda" th:href="@{/tienda}">
+        <span>Tienda</span>
+        <span><i class="fas fa-store"></i></span>
+      </a>
+    </li>
+    <li style="--i:2;">
+      <a href="/agendamiento">
+          <span>Agenda tu cita</span>
+          <span><i class="fas fa-photo-video"></i></span>
+      </a>
+  </li>
+    <li style="--i:3;">
+      <a href="/about" th:href="@{/about}">
+        <span>Nosotros</span>
+        <span><i class="fas fa-user-friends"></i></span>
+      </a>
+    </li>
+    <li style="--i:4;">
+      <a href="/contact" th:href="@{/contact}">
+        <span>Contáctanos</span>
+        <span><i class="fas fa-envelope"></i></span>
+      </a>
+    </li>
+    <li style="--i:4;">
+      <a href="/cart" th:href="@{/cart}">
+        <span><i class="far fa-cart-plus"></i></span>
+        <span><i class="fas fa-shopping-cart"></i></span>
+      </a>
+    </li>
+    <li th:if="${usuarioLogueado}" style="--i:4;">
+      <a th:href="@{/logout}">
+        <span th:text="${usuario.nombre}">Usuario</span>
+        <span><i class="fas fa-user-alt"></i></span>
+      </a>
+    </li>
+    <li th:unless="${usuarioLogueado}" style="--i:4;">
+      <a th:href="@{/login}">
+        <span><i class="far fa-user"></i></span>
+        <span><i class="fas fa-user-alt"></i></span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<section id="page-header" class="contact-header">
+  <h2>#ContactanosAhora</h2>
+  <p>Dejanos un mensaje, nos encantaria saber sobre ti.</p>
+</section>
+
+<section id="cart" class="section-p1">
+  <table width="100%">
+    <thead>
+    <tr>
+      <td>Quitar</td>
+      <td>Imagen</td>
+      <td>Producto</td>
+      <td>Precio</td>
+      <td>Cantidad</td>
+      <td>Subtotal</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entry : ${items}">
+      <td>
+        <form th:action="@{/kart/eliminar}" method="post">
+          <input type="hidden" name="idProducto" th:value="${entry.key.idProducto}" />
+          <input type="hidden" name="tipoProducto" th:value="${entry.key.getClass().getSimpleName() == 'ProductoRopa' ? 'ropa' : 'aseo'}" />
+          <button type="submit"><i class="far fa-times-circle"></i></button>
+        </form>
+      </td>
+      <td><img th:src="'data:image/jpeg;base64,' + ${entry.key.imagenBase64}" alt="Imagen del Producto"></td>
+      <td th:text="${entry.key.nombre}">Nombre del producto</td>
+      <td th:text="${entry.key.precioUnidad}">$0.00</td>
+      <td><input type="number" th:value="${entry.value}" min="1" /></td>
+      <td th:text="${entry.key.precioUnidad * entry.value}">$0.00</td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(items)}">
+      <td colspan="6">Tu carrito está vacío.</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="cart-add" class="section-p1">
+  <div id="coupon">
+    <h3>Aplicar cupon</h3>
+    <div>
+      <input type="text" placeholder="Ingrese su cupón">
+      <button class="normal">Aplicar</button>
+    </div>
+  </div>
+
+  <div id="subtotal">
+    <h3>Total del carro</h3>
+    <table>
+      <tr>
+        <td>Subtotal del carro</td>
+        <td th:text="${total}">$225.000</td>
+      </tr>
+      <tr>
+        <td>Cupon</td>
+        <td>Ninguno</td>
+      </tr>
+      <tr>
+        <td><strong>Total</strong></td>
+        <td><strong th:text="${total}">$225.000</strong></td>
+      </tr>
+    </table>
+    <button id="pagar" class="normal"   th:onclick="window.location.href='/kart/checkout'">Proceder al pago</button>
+  </div>
+</section>
+
+<footer class="section-p1">
+  <div class="col">
+    <img src="/img/logoTailor.png" class="logo" alt="">
+    <h4>Contacto</h4>
+    <p><strong>Dirección:</strong> Calle 66a #77-36 primer piso</p>
+    <p><strong>Celular:</strong>(+57) 310 4927032</p>
+    <p><strong>Horario:</strong> 10:00 - 20:00, Lun - Dom</p>
+    <div class="follow">
+      <h4>Síguenos</h4>
+      <div>
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitch"></i>
+        <i class="fab fa-youtube"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h4>Sobre nosotros</h4>
+    <a href="#">Acerca de nosotros</a>
+    <a href="#">Políticas de privacidad</a>
+    <a href="#">Términos y Condiciones</a>
+    <a href="#">Contáctanos</a>
+    <a href="#">Cómo Comprar</a>
+  </div>
+
+  <div class="col">
+    <h4>Mi Cuenta</h4>
+    <a th:href="@{/login}">Iniciar Sesión</a>
+    <a th:href="@{/cart}">Ver carrito</a>
+    <a href="">Lista de deseos</a>
+    <a th:href="@{/appointments}">Agendar cita</a>
+    <a th:href="@{/warranty}">Solicitar Garantía</a>
+  </div>
+
+  <div class="col pay">
+    <h4>Métodos de Pago Seguros</h4>
+    <div class="row">
+      <img src="/img/pay/Nequi-o-Daviplata.png" alt="">
+    </div>
+    <img src="/img/pay/pay.png" alt="">
+  </div>
+
+  <div class="copyright">
+    <p>© 2023 Tailor.net. Todos los derechos reservados.</p>
+  </div>
+</footer>
+<script src="/js/script.js"></script>
+</body>
+</html>

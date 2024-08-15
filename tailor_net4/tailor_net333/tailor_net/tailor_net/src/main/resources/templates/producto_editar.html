@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/inventario.css">
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+</head>
+<body>
+<div class="container">
+    <div class="main active">
+        <div class="topbar">
+            <div class="toggle">
+                <i class="bi bi-list"></i>
+            </div>
+
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Buscar">
+                    <i class="bi bi-search"></i>
+                </label>
+            </div>
+
+            <div class="user">
+                <img src="/img/Clientes/alcarngel.jpeg" alt="">
+            </div>
+        </div>
+        <form th:action="@{/producto_editar}" th:object="${producto}" method="post" enctype="multipart/form-data" class="custom-form">
+            <input type="hidden" name="idProducto" th:value="${producto.idProducto}" />
+
+            <label for="nombre" class="form-label">Nombre *</label>
+            <input type="text" th:field="*{nombre}" class="form-control" required>
+
+            <label for="descripcion" class="form-label">Descripcion *</label>
+            <input type="text" th:field="*{descripcion}" class="form-control" required>
+
+            <label for="precio" class="form-label">Precio *</label>
+            <input type="number" th:field="*{precioUnidad}" class="form-control" required>
+
+            <label for="cantidad" class="form-label">Cantidad *</label>
+            <input type="number" th:field="*{cantidad}" class="form-control" required>
+
+            <label for="cantidadMin" class="form-label">Cantidad mínima *</label>
+            <input type="number" th:field="*{cantidadMin}" class="form-control" required>
+
+            <label for="talla" class="form-label">Talla *</label>
+            <input type="text" th:field="*{talla}" class="form-control" required>
+
+            <label for="foto" class="form-label">Imagen del Producto</label>
+            <input type="file" name="imagen" id="imagen" class="form-control-file">
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/95789fc486.js" crossorigin="anonymous"></script>
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

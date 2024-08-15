@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tailor.net</title>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+        <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/index.css">
+    </head>
+
+    <body>
+
+
+        <nav id="navbar">
+            <a href="#" class="brand">
+                <span><img id="cambio" src="/img/logoTailor.png" width="140px" height="50px" class="logo" alt="Logo Tailor"></span>
+                <span><img src="/img/logoTailor.png" width="140px" height="50px" class="logo" alt="Logo Tailor"></span>
+            </a>
+            <ul>
+                <li style="--i:0;">
+                    <a  href="/index">
+                        <span>Inicio</span>
+                        <span><i class="fas fa-home"></i></span>
+                    </a>
+                </li>
+                <li style="--i:1;">
+                    <a href="/tienda">
+                        <span>Tienda</span>
+                        <span><i class="fas fa-store"></i></span>
+                    </a>
+                </li>
+                <li style="--i:2;">
+                    <a href="/agendamiento">
+                        <span>Agenda tu cita</span>
+                        <span><i class="fas fa-photo-video"></i></span>
+                    </a>
+                </li>
+                <li style="--i:3;">
+                    <a  class="active" href="/about">
+                        <span>Nosotros</span>
+                        <span><i class="fas fa-user-friends"></i></span>
+                    </a>
+                </li>
+                <li style="--i:4;">
+                    <a href="/contact">
+                        <span>Contactanos</span>
+                        <span><i class="fas fa-envelope"></i></span>
+                    </a>
+                </li>
+                <li style="--i:4;">
+                    <a href="/kart">
+                        <span><i class="far fa-cart-plus"></i></span>
+                        <span><i class="fas fa-shopping-cart"></i></span>
+                    </a>
+                </li>
+        
+                <ul>
+                    <li th:if="${usuarioLogueado}" style="--i:4;">
+                        <a th:href="@{/logout}">
+                            <span th:text="${usuario.nombre}"></span>
+                            <span><i class="fas fa-user-alt"></i></span>
+                        </a>
+                    </li>
+                    <li th:unless="${usuarioLogueado}" style="--i:4;">
+                        <a th:href="@{/login}">
+                            <span><i class="far fa-user"></i></span>
+                            <span><i class="fas fa-user-alt"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </ul>
+        </nav>
+
+        <section id="page-header" class="about-header">
+            <h2>#ConoceSobreNosotros</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eveniet quos voluptatem? </p>
+        </section>
+
+        <section id="about-head" class="section-p1">
+            <img src="img/about/a6.jpg" alt="">
+            <div>
+                <h2>¿Quiene Somos?</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis provident enim eos perferendis voluptates alias consequuntur, temporibus repudiandae veniam. Non reiciendis nemo sit blanditiis magnam ab ut perferendis, ratione numquam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, et? Perspiciatis, dolores omnis. Ullam harum ut consectetur distinctio perspiciatis culpa soluta dolorem aliquam fuga? Ipsum, repellendus ullam. Placeat, corrupti deserunt!</p>
+                <abbr title="Sitio Web para la sastreria RUSSI">Tailor.net</abbr>
+                <br><br>
+
+                <marquee loop="-1" scrollamount="5" width="100%">¡Bienvenido a nuestra tienda de sastrería en línea! Descubre elegantes trajes a medida y accesorios de alta calidad.</marquee>
+            </div>
+        </section>
+
+        <section id="about-video" class="section-p1">
+            <h1>Video sobre <a href="#">sastreria</a></h1>
+            <div class="video">
+                <video autoplay muted loop src="img/about/pexels-tea-oebel-6770995 (2160p).mp4"></video>
+            </div>
+        </section>
+
+        <section id="feature" class="section-p1">
+            <div class="fe-box">
+                <img src="img/features/f1.png" alt="">
+                <h6>Ofertas Exclusivas</h6>
+            </div>
+            <div class="fe-box">
+                <img src="img/features/f2.png" alt="">
+                <h6>Pedidos en linea</h6>
+            </div>
+            <div class="fe-box">
+                <img src="img/features/f3.png" alt="">
+                <h6>Ahorra dinero</h6>
+            </div>
+            <div class="fe-box">
+                <img src="img/features/f4.png" alt="">
+                <h6>Promociones</h6>
+            </div>
+            <div class="fe-box">
+                <img src="img/features/f5.png" alt="">
+                <h6>Clientes satisfechos</h6>
+            </div>
+            <div class="fe-box">
+                <img src="img/features/f6.png" alt="">
+                <h6>Soporte 24/7</h6>
+            </div>
+        </section>
+
+        <section id="newsletter" class="section-p1  section-m1">
+            <div class="newstext">
+                <h4>Mantente al tanto con las novedades</h4>
+                <p>Recibe actualizaciones por correo electrónico sobre nuestra tienda más reciente y <span>ofertas especiales</span></p>
+            </div>
+            <div class="form">
+                <input type="text" placeholder="Correo electrónico">
+                <button class="normal">Suscribete</button>
+            </div>
+        </section>
+
+        <footer class="section-p1">
+            <div class="col">
+                <img src="img/logoTailor.png" class="logo" alt="">
+                <h4>Contacto</h4>
+                <p><strong>Dirección:</strong> Calle 66a #77-36 primer piso</p>
+                <p><strong>Celular:</strong>(+57) 310 4927032</p>
+                <p><strong>Horario:</strong> 10:00 - 20:00, Lun - Dom</p>
+                <div class="follow">
+                    <h4>Siguenos</h4>
+                    <div>
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-twitch"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <h4>Sobre nosotros</h4>
+                <a href="#">Acerca de nosotros</a>
+                <a href="#">Politicas de privacidad</a>
+                <a href="#">Terminos y Condiciones</a>
+                <a href="#">Contactanos</a>
+                <a href="#">Como Comprar</a>
+            </div>
+            <div class="col">
+                <h4>Mi Cuenta</h4>
+                <a href="../Login y Registro/login.php">Iniciar Sesión</a>
+                <a href="#">Ver carrito</a>
+                <a href="#">Lista de deseos</a>
+                <a href="../Agendamiento de citas/agendamiento.php">Agendar cita</a>
+                <a href="../Garantias/garantias.php">Solicitar Garantia</a>
+            </div>
+<!-- cambiarlo -->
+            <div class="col pay">
+                <h4>Metodos de Pago Seguros</h4>
+                <div class="row">
+                    <img src="img/pay/Nequi-o-Daviplata.png" alt="">
+                </div>
+                <img src="img/pay/pay.png" alt="">
+            </div>
+            <div class="copyright">
+                <p>© 2023 Tailor.net. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+        <script src="/js/script.js"></script>
+    </body>
+
+</html>

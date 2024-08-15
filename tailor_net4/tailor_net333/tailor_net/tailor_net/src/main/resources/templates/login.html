@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login y Registro</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <nav>
+        <div class="back"><a href="../../../index.php"><h1 class="efecto">Taylor.net</h1></a></div>
+    </nav>
+
+    <div th:if="${loginError != null}" th:remove="tag">
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: [[${loginError}]]
+            });
+            /*]]>*/
+        </script>
+    </div>
+    
+    
+
+        
+    <main class="wrapper">
+
+
+        <span class="bg-animate"></span>
+        <span class="bg-animate2"></span>
+        <span class="bg-animate3"></span>
+        <div class="form-box login">
+            <h2 class="animation" style="--i:0; --j:23;">Inicio de Sesión</h2>
+            <form id="loginForm" action="/iniciarSesion" method="POST">
+
+                <div class="input-box animation" style="--i:1; --j:24;">
+                    <input type="email" id="username" name="email" required>
+                    <label>Correo</label>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box animation" style="--i:2; --j:25;">
+                    <input type="password" id="password" name="clave"  required>
+                    <!-- minlength="7" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$%^&*])(?!\s).{7,}$" title="La contraseña debe tener al menos 7 caracteres, incluir una letra minúscula, una letra mayúscula, un dígito y un carácter especial. No se permiten espacios en blanco." -->
+                    <label>Contraseña</label>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                
+                <button id="btnI" class="btn animation" style="--i:3; --j:26;" type="submit">Iniciar Sesión</button>
+                <div class="logreg-link animation" style="--i:4; --j:27">
+                    <p>¿No tiene una cuenta? <a href="#" class="register-link ">Registrarse</a></p>
+                    <p>¿Olvido su contraseña? <a href="#" class="register-link recover">Recuperar</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="info-text login">
+            <h2 class="animation" style="--i:0; --j:23;">¡Bienvenido de vuelta!</h2>
+            <p class="animation" style="--i:1; --j:24;">Inicia sesión para acceder a tu cuenta y continuar disfrutando de nuestros servicios. Estamos emocionados de tenerte aquí.</p>
+        </div>
+
+        <div class="form-box register">
+            <form action="/registrarUsuario" method="POST">
+                <div class="input-box animation" style="--i:19; --j:1;">
+                    <input type="text" name="nombre"  pattern="[A-Za-zñÑ\s]{4,15}" title="El nombre debe tener entre 4 y 15 letras y no puede contener números ni caracteres especiales." required>
+                    <label>Nombre Usuario</label>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box animation" style="--i:20; --j:2;">
+                    <input type="email" name="email" required>
+                    <label>Correo Electronico</label>
+                    <i class='bx bxs-envelope'></i>
+                </div>
+                <div class="input-box animation" style="--i:20; --j:2;">
+                    <input type="tel" name="telefono" pattern="^[0-9]{10,}$" title="Ingresa al menos 10 dígitos" required>
+                    <label>Teléfono</label>
+                    <i class='bx bx-phone'></i>
+
+                    </div>
+                <div class="input-box animation" style="--i:21; --j:3;">
+                    <input type="password" name="contraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$%^&*])(?!\s).{7,}$" title="La contraseña debe tener al menos 7 caracteres, incluir una letra minúscula, una letra mayúscula, un dígito y un carácter especial. No se permiten espacios en blanco." required>
+                    <label>Contraseña</label>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <button class="btn animation" style="--i:22; --j:4;" type="submit">Registrarse</button>
+                <div class="logreg-link animation" style="--i:23; --j:5;">
+                    <p>¿Ya tiene una cuenta? <a href="#" class="login-link">Iniciar Sesión</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="info-text register">
+            <h2 class="animation" style="--i:18; --j:0;">¡Regístrate y disfruta!</h2>
+            <p class="animation" style="--i:19; --j:1;">Regístrate ahora y descubre todo lo que tenemos para ti.</p>
+        </div>
+
+
+        <div class="form-wrapper recuperacion off">
+            <form action="#">
+                <h2>Recuperar contraseña</h2>
+                <div class="input-box">
+                    <input type="email" required>
+                    <label>Correo Electronico</label>
+                </div>
+                <button type="submit" class="btn">Enviar</button>
+                <div class="sign-link logreg-link">
+                    <p>¿Recordó su contraseña? <a href="#" class="recovered">Iniciar Sesión</a></p>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+
+    <script src="/js/login.js"></script>
+
+</body>
+</html>
